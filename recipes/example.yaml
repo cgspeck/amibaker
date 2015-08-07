@@ -43,6 +43,11 @@ copy:
     to: /path/to/destination_file
     mode: 0600
 
+copy_and_run:
+  - from: /path/to/some/script
+    args: foo bar=true
+  - from: /path/to/some/other/script # no args
+
 provisioning_script: |
  sudo yum update -y
  sudo yum install -y telnet

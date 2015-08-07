@@ -53,7 +53,7 @@ class AmiBaker:
         ec2 = AmiEc2(quiet=self.__quiet, recipe=self.__recipe)
         ec2.instantiate()
 
-        ec2.wait_until_healthy()
+        ec2.wait_until_healthy()  # necessary?
         provisioner = Provisioner(ec2, quiet=self.__quiet)
 
         provision_args = {}
@@ -65,6 +65,10 @@ class AmiBaker:
         script = self.__recipe.get('provisioning_script')
         if script:
             provision_args['script'] = script
+
+        copy_and_run = self.__recipe.get('copy_and_run', None)
+
+        provision_args['copy_and_run'] = copy_and_run
 
         provisioner.provision(**provision_args)
 
