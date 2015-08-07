@@ -87,8 +87,8 @@ class AmiEc2:
             self.__delete_iam_instance_profile()
 
     def wait_until_running(self):
-        self.__awscli.ec2('wait', 'instance-running',
-                          '--instance-ids', self.__instance['InstanceId'])
+        self.__awscli.ec2('wait', 'instance-status-ok',
+            '--instance-ids', self.__instance['InstanceId'])
 
     def wait_until_healthy(self):
         self.__awscli.ec2('wait', 'instance-running',
