@@ -46,8 +46,14 @@ class Provisioner:
         if isinstance(copy, list):
             self.__copy(copy)
 
+        if isinstance(copy_and_run, list):
+            self.__copy_and_run(copy_and_run, post=True)
+
         if script:
             self.__run(script)
+
+        if isinstance(copy_and_run, list):
+            self.__copy_and_run(copy_and_run, post=False)
 
     def __run(self, script):
         run(script, warn_only=True)
