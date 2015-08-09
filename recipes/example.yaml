@@ -47,6 +47,12 @@ copy_and_run:
   - from: /path/to/some/script
     args: foo bar=true
   - from: /path/to/some/other/script # no args
+  - from: /path/to/some/script
+    args: foo bar=true
+    post_provisioning: true
+  - from: /path/to/some/script
+    args: foo bar=true
+    sudo: true
 
 provisioning_script: |
  sudo yum update -y
